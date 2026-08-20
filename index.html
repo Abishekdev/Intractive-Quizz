@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive Cryptography quiz on transposition techniques">
+  <title>Transposition Techniques | Interactive Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="ux.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Interactive Quiz home"><span class="brand-mark">Q</span><span>QUIZ / LAB</span></a>
+      <div class="connection-pill"><span class="status-dot"></span><span id="connectionLabel">Connecting...</span></div>
+      <a class="host-link" href="admin.html">Host dashboard <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main>
+      <section id="loginView" class="view login-view">
+        <div class="login-copy">
+          <p class="eyebrow">INTERACTIVE QUIZ DEVELOPMENT</p>
+          <h1>Decode the<br><em>permutation.</em></h1>
+          <p class="intro">A live cryptography challenge about the art of rearranging information without changing a single symbol.</p>
+          <div class="course-meta"><span>TOPIC</span><strong>TRANSPOSITION TECHNIQUES</strong><span>SUBJECT</span><strong>CRYPTOGRAPHY &amp; NETWORK SECURITY</strong></div>
+        </div>
+        <div class="login-panel panel">
+          <div class="panel-kicker">STUDENT ACCESS <span>01 / 03</span></div>
+          <h2>Enter the room.</h2>
+          <p class="muted">Use your college details to join the live session.</p>
+          <form id="loginForm" novalidate>
+            <label for="studentName">Student name</label>
+            <input id="studentName" name="studentName" type="text" autocomplete="name" placeholder="e.g. Abishek Kumar" required maxlength="50">
+            <label for="rollNumber">Roll number</label>
+            <input id="rollNumber" name="rollNumber" type="text" autocomplete="off" placeholder="e.g. CS-042" required maxlength="20">
+            <p id="loginError" class="form-error" role="alert"></p>
+            <button class="button button-primary button-wide" type="submit">Join quiz <span aria-hidden="true">→</span></button>
+          </form>
+          <p id="firebaseNotice" class="firebase-notice" role="status">Connecting to the live quiz room...</p>
+        </div>
+      </section>
+
+      <section id="waitingView" class="view waiting-view hidden">
+        <div class="waiting-orbit"><div class="orbit-core">Q</div></div>
+        <p class="eyebrow">YOU ARE IN</p><h1>Waiting room</h1>
+        <p class="intro centered">The host will start the quiz shortly. Keep this tab open.</p>
+        <div class="waiting-stats panel"><div><span>PARTICIPANTS ONLINE</span><strong id="waitingParticipants">1</strong></div><div><span>SESSION STATUS</span><strong id="waitingStatus">Waiting</strong></div></div>
+        <p id="waitingNotice" class="firebase-notice">Waiting for the host to start the quiz...</p>
+      </section>
+
+      <section id="quizView" class="view quiz-view hidden">
+        <div class="quiz-header"><div><p class="eyebrow">LIVE SESSION / TRANSPOSITION TECHNIQUES</p><h1 id="questionLabel">Question 01 <span>/ 15</span></h1></div><div class="score-chip"><span>YOUR SCORE</span><strong id="scoreValue">0</strong></div></div>
+        <div class="progress-track"><span id="progressBar"></span></div>
+        <div class="quiz-grid"><article class="question-card panel"><div class="question-meta"><span id="difficultyLabel">EASY</span><span class="timer" id="timerLabel">00:15</span></div><h2 id="questionText"></h2><div id="optionsList" class="options-list"></div><div class="question-footer"><p id="answerFeedback" class="feedback" role="status"></p><button id="submitButton" class="button button-primary" type="button" disabled>Submit answer <span aria-hidden="true">→</span></button></div></article><aside class="sidebar-stack"><div class="rank-card panel"><div class="panel-kicker">LIVE RANK</div><strong id="rankValue">#1</strong><span id="rankTotal">/ 1 student</span><div class="rank-change" id="rankChange"></div></div><div class="leaderboard-card panel"><div class="panel-kicker">LIVE LEADERBOARD <span class="live-label">● LIVE</span></div><div id="leaderboardList"></div></div></aside></div>
+      </section>
+
+      <section id="resultView" class="view result-view hidden"><p class="eyebrow">SESSION COMPLETE</p><h1>Well decoded,<br><em id="resultName">student.</em></h1><div class="result-layout"><div class="result-score panel"><span>FINAL SCORE</span><strong id="resultScore">0</strong><div id="resultRank" class="result-rank">Rank #1</div></div><div class="result-details panel"><div><span>CORRECT ANSWERS</span><strong id="resultCorrect">0 / 15</strong></div><div><span>ACCURACY</span><strong id="resultAccuracy">0%</strong></div><div><span>TOTAL TIME</span><strong id="resultTime">00:00</strong></div><div><span>PARTICIPANTS</span><strong id="resultParticipants">1</strong></div></div></div><div class="final-board panel"><div class="section-heading"><div><p class="eyebrow">THE ROOM</p><h2>Final leaderboard</h2></div><span class="muted">All scores are in.</span></div><div id="finalLeaderboard"></div></div><button id="restartButton" class="button button-secondary" type="button">Return to lobby</button></section>
+    </main>
+    <footer>DEVELOPED FOR COLLEGE ACADEMIC PROJECT <span>·</span> CRYPTOGRAPHY &amp; NETWORK SECURITY</footer>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script type="module" src="script.js?v=2"></script>
+</body>
+</html>
