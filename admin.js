@@ -25,7 +25,6 @@ const questions = [
 const $ = (id) => document.getElementById(id);
 const formatTime = (seconds) => `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
 const escapeHtml = (value) => value.replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#039;', '"': '&quot;' })[character]);
-const sortedStudents = () => Object.values(students).sort((a, b) => b.score - a.score || a.totalTime - b.totalTime);
 let status = 'waiting'; let question = 0; let quizEnded = false; let firebaseDatabase = null; let students = {};
 if (isFirebaseConfigured) {
 	try {
