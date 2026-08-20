@@ -14,6 +14,9 @@ Quiz Lab turns a set of questions about classical transposition ciphers into a l
 - Live leaderboard with rank, score, answered questions, and time
 - Final results view with podium and participant summary
 - Host dashboard with start, pause, next-question, and end-session controls
+- Host-assigned quiz passcode required before students can join
+- Host-side topic manager for creating separate quiz subjects
+- Question editor for adding, editing, and deleting questions without changing code
 - Responsive interface for desktop and mobile screens
 - Anonymous Firebase Authentication with Realtime Database synchronization
 - No build step or npm dependencies required
@@ -37,9 +40,15 @@ Quiz Lab turns a set of questions about classical transposition ciphers into a l
 |-- admin.html           # Host dashboard
 |-- script.js            # Student flow, quiz logic, scoring, leaderboard
 |-- admin.js             # Host controls and live participant view
+|-- question-manager.html # Add, edit, and delete quiz questions
+|-- live.html             # Live controls, current question, and ranking
 |-- firebase-config.js   # Firebase Web App configuration
 |-- style.css            # Main visual system
 |-- ux.css               # Interaction states and responsive refinements
+|-- theme.css             # Dark visual theme
+|-- interactions.js       # Hover, tilt, ripple, and reveal interactions
+|-- question-manager.js   # Question manager behavior
+|-- live.js               # Live room behavior
 `-- README.md
 ```
 
@@ -83,6 +92,12 @@ The application reads and writes these main paths:
 quiz/
   status
   currentQuestion
+  topicId
+  accessCode
+topics/{topicId}/
+  name
+  questions/{questionId}/
+    text, options, answer, difficulty
 students/{studentId}/
   name, rollNo, score, correctAnswers, answeredQuestions, totalTime, online
 answers/{studentId}/{questionId}/
@@ -93,6 +108,17 @@ answers/{studentId}/{questionId}/
 
 This is an academic demonstration, not a production assessment platform. Quiz questions, answer validation, scoring, and the host password currently live in client-side JavaScript. Before production use, move scoring and host authorization to trusted server-side code or Firebase Cloud Functions, validate question identity and timer values, prevent score tampering, and add stricter database rules. Never use open test-mode rules for a public deployment.
 
+## Manage topics and questions
+
+1. Open `question-manager.html` and unlock the content studio with the configured demonstration password.
+2. Select an existing topic or create a new topic with **Add topic**.
+3. Use **Save question** to add four-option questions, or select **Edit** beside an existing question.
+4. Open `live.html` to start the session, advance questions, pause, end the quiz, and monitor the live ranking.
+5. Set a quiz passcode in the Live Room before starting. Students must enter that passcode to join.
+6. Students automatically receive the active topic selected by the host.
+
+Topics and questions are stored in Firebase under `topics`, while the current session stores its selected topic under `quiz.topicId`.
+
 ## Customization
 
 - Edit the `questions` array in `script.js` and `admin.js` to change the quiz content.
@@ -102,7 +128,7 @@ This is an academic demonstration, not a production assessment platform. Quiz qu
 
 ## LinkedIn project description
 
-Built **Quiz Lab**, a real-time interactive cryptography quiz using vanilla JavaScript and Firebase Realtime Database. The project includes timed questions, speed-based scoring, live leaderboards, anonymous authentication, and a dedicated host dashboard for controlling classroom sessions. It was designed as an academic project for Cryptography and Network Security.
+Built **Quiz Lab**, a real-time interactive cryptography quiz using vanilla JavaScript and Firebase Realtime Database. The project includes timed questions, speed-based scoring, live leaderboards, anonymous authentication, student quiz passcodes, and dedicated host pages for managing content and classroom sessions. It was designed as an academic project for Cryptography and Cybersecurity.
 
 ## License
 

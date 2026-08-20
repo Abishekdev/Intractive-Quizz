@@ -9,7 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="ux.css">
+  <link rel="stylesheet" href="ux.css?v=2">
+  <link rel="stylesheet" href="theme.css?v=1">
 </head>
 <body>
   <div class="app-shell">
@@ -25,7 +26,7 @@
           <p class="eyebrow">INTERACTIVE QUIZ DEVELOPMENT</p>
           <h1>Decode the<br><em>permutation.</em></h1>
           <p class="intro">A live cryptography challenge about the art of rearranging information without changing a single symbol.</p>
-          <div class="course-meta"><span>TOPIC</span><strong>TRANSPOSITION TECHNIQUES</strong><span>SUBJECT</span><strong>CRYPTOGRAPHY &amp; NETWORK SECURITY</strong></div>
+          <div class="course-meta"><span>TOPIC</span><strong>TRANSPOSITION TECHNIQUES</strong><span>SUBJECT</span><strong>CRYPTOGRAPHY AND CYBERSECURITY</strong></div>
         </div>
         <div class="login-panel panel">
           <div class="panel-kicker">STUDENT ACCESS <span>01 / 03</span></div>
@@ -36,6 +37,8 @@
             <input id="studentName" name="studentName" type="text" autocomplete="name" placeholder="e.g. Abishek Kumar" required maxlength="50">
             <label for="rollNumber">Roll number</label>
             <input id="rollNumber" name="rollNumber" type="text" autocomplete="off" placeholder="e.g. CS-042" required maxlength="20">
+            <label for="quizAccessCode">Quiz passcode</label>
+            <input id="quizAccessCode" name="quizAccessCode" type="password" autocomplete="off" placeholder="Enter the host passcode" required maxlength="30">
             <p id="loginError" class="form-error" role="alert"></p>
             <button class="button button-primary button-wide" type="submit">Join quiz <span aria-hidden="true">→</span></button>
           </form>
@@ -59,9 +62,10 @@
 
       <section id="resultView" class="view result-view hidden"><p class="eyebrow">SESSION COMPLETE</p><h1>Well decoded,<br><em id="resultName">student.</em></h1><div class="result-layout"><div class="result-score panel"><span>FINAL SCORE</span><strong id="resultScore">0</strong><div id="resultRank" class="result-rank">Rank #1</div></div><div class="result-details panel"><div><span>CORRECT ANSWERS</span><strong id="resultCorrect">0 / 15</strong></div><div><span>ACCURACY</span><strong id="resultAccuracy">0%</strong></div><div><span>TOTAL TIME</span><strong id="resultTime">00:00</strong></div><div><span>PARTICIPANTS</span><strong id="resultParticipants">1</strong></div></div></div><div class="final-board panel"><div class="section-heading"><div><p class="eyebrow">THE ROOM</p><h2>Final leaderboard</h2></div><span class="muted">All scores are in.</span></div><div id="finalLeaderboard"></div></div><button id="restartButton" class="button button-secondary" type="button">Return to lobby</button></section>
     </main>
-    <footer>DEVELOPED FOR COLLEGE ACADEMIC PROJECT <span>·</span> CRYPTOGRAPHY &amp; NETWORK SECURITY</footer>
+    <footer>DEVELOPED FOR COLLEGE ACADEMIC PROJECT <span>·</span> CRYPTOGRAPHY AND CYBERSECURITY</footer>
   </div>
   <div id="toast" class="toast" role="status"></div>
-  <script type="module" src="script.js?v=2"></script>
+  <script type="module" src="script.js?v=4"></script>
+  <script src="interactions.js?v=2"></script>
 </body>
 </html>
